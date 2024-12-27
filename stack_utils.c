@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/27 22:08:19 by moel-mes          #+#    #+#             */
+/*   Updated: 2024/12/27 22:08:20 by moel-mes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack_node	*find_last_node(t_stack_node *head)
@@ -70,7 +82,7 @@ t_stack_node	*return_cheapest(t_stack_node *stack)
 
 int	stack_len(t_stack_node *stack)
 {
-	int count;
+	int	count;
 
 	if (!stack)
 		return (0);

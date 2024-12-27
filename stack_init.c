@@ -1,24 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/27 22:08:16 by moel-mes          #+#    #+#             */
+/*   Updated: 2024/12/27 22:22:19 by moel-mes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_stack_node	*find_largest(t_stack_node *stack)
+void	algo(t_stack_node **a, t_stack_node **b, int median, int q1)
 {
-	long			largest;
-	t_stack_node	*largest_node;
-
-	if (!stack)
-		return (NULL);
-	largest = -2147483648;
-	largest_node = NULL;
-	while (stack)
+	while (stack_len(*a) > 3)
 	{
-		if (stack->value > largest)
+		if (bigger_than_median(*a, median))
 		{
-			largest = stack->value;
-			largest_node = stack;
+			while (stack_len(*a) > 3)
+				pb(b, a, false);
+			break ;
 		}
-		stack = stack->next;
+		if ((*a)->value < median)
+		{
+			pb(b, a, false);
+			if ((*b)->value < q1)
+				rb(b, false);
+		}
+		else
+			ra(a, false);
 	}
-	return (largest_node);
+	tiny_sort(a);
+	while (*b)
+	{
+		init_nodes(*a, *b);
+		move_nodes(a, b);
+	}
+}
+
+int	bigger_than_median(t_stack_node *a, int median)
+{
+	while (a)
+	{
+		if (a->value < median)
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }
 
 static long	ft_atol(const char *str)

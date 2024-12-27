@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/27 22:08:14 by moel-mes          #+#    #+#             */
+/*   Updated: 2024/12/27 22:17:44 by moel-mes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_putstr(char *s)
@@ -47,19 +59,12 @@ static char	*get_next_word(char *s, char sep)
 	next_str[i] = '\0';
 	return (next_str);
 }
-char	**ft_split(char *s, char sep)
+
+char	**creat_args(int w_c, char **strs, char *s, char sep)
 {
-	int		w_c;
-	int		i;
-	char	**strs;
+	int	i;
 
 	i = 0;
-	w_c = count_words(s, sep);
-	if (!w_c)
-		exit(1);
-	strs = malloc(sizeof(char *) * (size_t)(w_c + 2));
-	if (!strs)
-		return (NULL);
 	while (w_c-- >= 0)
 	{
 		if (i == 0)
@@ -77,4 +82,20 @@ char	**ft_split(char *s, char sep)
 	}
 	strs[i] = NULL;
 	return (strs);
+}
+
+char	**ft_split(char *s, char sep)
+{
+	int		w_c;
+	int		i;
+	char	**strs;
+
+	i = 0;
+	w_c = count_words(s, sep);
+	if (!w_c)
+		exit(1);
+	strs = malloc(sizeof(char *) * (size_t)(w_c + 2));
+	if (!strs)
+		return (NULL);
+	return (creat_args(w_c, strs, s, sep));
 }
