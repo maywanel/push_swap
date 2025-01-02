@@ -12,15 +12,15 @@
 
 #include "push_swap.h"
 
-void free_all(char *operation, t_stack_node **a, t_stack_node **b)
+void	free_all(char *operation, t_stack_node **a, t_stack_node **b)
 {
-  while (operation)
-  {
-    free(operation);
-    operation = get_next_line(0);
-  }
-  free_stack(a);
-  free_stack(b);
+	while (operation)
+	{
+		free(operation);
+		operation = get_next_line(0);
+	}
+	free_stack(a);
+	free_stack(b);
 }
 
 int	ft_strncmp(char *s1, char *s2, int n)
