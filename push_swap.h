@@ -13,6 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -31,6 +32,17 @@ typedef struct s_stack_node
 	struct s_stack_node	*prev;
 }						t_stack_node;
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
+# define MAX 2147483647
+
+char					*ft_substr(char *s, int start, int end);
+char					*ft_strjoin(char *s1, char *s2);
+char					*ft_strcpy(char *s, const char *str, int len);
+int						ft_strlen(char *s);
+char					*ft_strdup(char *s);
+char					*get_next_line(int fd);
 char					**ft_split(char *s, char sep);
 void					ft_putstr(char *s);
 // error handling---------------------------------------------

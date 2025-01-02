@@ -87,10 +87,8 @@ char	**creat_args(int w_c, char **strs, char *s, char sep)
 char	**ft_split(char *s, char sep)
 {
 	int		w_c;
-	int		i;
 	char	**strs;
 
-	i = 0;
 	w_c = count_words(s, sep);
 	if (!w_c)
 		exit(1);

@@ -1,51 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrotate_commands.c                                 :+:      :+:    :+:   */
+/*   rotate_commands.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/27 22:08:12 by moel-mes          #+#    #+#             */
-/*   Updated: 2024/12/27 22:08:13 by moel-mes         ###   ########.fr       */
+/*   Created: 2024/12/27 22:08:09 by moel-mes          #+#    #+#             */
+/*   Updated: 2024/12/27 22:08:10 by moel-mes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	reverse_rotate(t_stack_node **stack)
+static void	rotate(t_stack_node **stack)
 {
-	t_stack_node	*last;
+	t_stack_node	*last_node;
 	int				len;
 
 	len = stack_len(*stack);
-	if (NULL == *stack || NULL == stack || 1 == len)
+	if (!stack || !*stack || 1 == len)
 		return ;
-	last = find_last_node(*stack);
-	last->prev->next = NULL;
-	last->next = *stack;
-	last->prev = NULL;
-	*stack = last;
-	last->next->prev = last;
+	last_node = find_last_node(*stack);
+	last_node->next = *stack;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	last_node->next->prev = last_node;
+	last_node->next->next = NULL;
 }
 
-void	rra(t_stack_node **a, bool checker)
+void	ra(t_stack_node **a, bool checker)
 {
-	reverse_rotate(a);
+	rotate(a);
 	if (!checker)
-		ft_putstr("rra");
+		ft_putstr("ra");
 }
 
-void	rrb(t_stack_node **b, bool checker)
+void	rb(t_stack_node **b, bool checker)
 {
-	reverse_rotate(b);
+	rotate(b);
 	if (!checker)
-		ft_putstr("rrb");
+		ft_putstr("rb");
 }
 
-void	rrr(t_stack_node **a, t_stack_node **b, bool checker)
+void	rr(t_stack_node **a, t_stack_node **b, bool checker)
 {
-	reverse_rotate(a);
-	reverse_rotate(b);
+	rotate(a);
+	rotate(b);
 	if (!checker)
-		ft_putstr("rrr");
+		ft_putstr("rr");
 }
