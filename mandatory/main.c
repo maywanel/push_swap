@@ -58,6 +58,7 @@ int	main(int argc, char **argv)
   }
 	args = ft_split(s, ' ');
 	stack_init(&a, args + 1, true);
+  free(s);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
