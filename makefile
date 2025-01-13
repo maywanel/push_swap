@@ -24,11 +24,10 @@ $(NAME): $(ARCHIVE)
 	@echo "$(GREEN)Building $(NAME)...$(RESET)"
 	@echo "$(BLUE)Executable $(NAME) created.$(RESET)"
 
-$(ARCHIVE): $(OBJS)
-	@$(MAKE_LIB) $(ARCHIVE) $(OBJS)
+$(ARCHIVE): $(OBJS) $(BOBJ)
+	@$(MAKE_LIB) $(ARCHIVE) $(OBJS) $(BOBJ)
 
 bonus: $(BOBJ) $(OBJS)
-	@$(MAKE_LIB) $(ARCHIVE) $(BOBJ) $(OBJS)
 	@$(CC) $(ARCHIVE) -o checker
 	@echo "$(GREEN)Bonus checker created.$(RESET)"
 	@touch bonus

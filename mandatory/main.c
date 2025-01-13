@@ -12,18 +12,52 @@
 
 #include "push_swap.h"
 
+char *ft_args(char **av, int ac)
+{
+  char  *args;
+  int   i;
+
+  i = 0;
+  args = NULL;
+  while (i < ac - 1)
+  {
+    args = ft_strjoin(args, av[i]);
+    args = ft_strjoin(args, " ");
+    if (!args)
+      return (NULL);
+    i++;
+  }
+  i = 0;
+  while (args[i])
+  {
+    if (args[i] != ' ')
+      return (args);
+    i++;
+  }
+  free(args);
+  return (NULL);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack_node	*a;
 	t_stack_node	*b;
+  char *s;
+  char **args;
 
 	a = NULL;
 	b = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
-	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	stack_init(&a, argv + 1, argc == 2);
+  s = ft_args(argv + 1, argc);
+  if (!s)
+  {
+    ft_putstr("Error");
+    free(s);
+    exit(1);
+  }
+	args = ft_split(s, ' ');
+	stack_init(&a, args + 1, true);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
@@ -36,3 +70,4 @@ int	main(int argc, char **argv)
 	free_stack(&a);
 	return (0);
 }
+
