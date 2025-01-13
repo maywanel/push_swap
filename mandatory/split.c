@@ -80,7 +80,6 @@ char	**creat_args(int w_c, char **strs, char *s, char sep)
 		}
 		strs[i++] = get_next_word(s, sep);
 	}
-  free(s);
 	strs[i] = NULL;
 	return (strs);
 }
